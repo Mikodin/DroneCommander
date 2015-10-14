@@ -80,7 +80,7 @@ int  droneCheckDir(DRONE *d, char dir) {
 	}
 	
 	else if (dir == 'W'){
-		printf("Checking DIR: N %C\n",board[d->y][d->x+1]);
+		printf("Checking DIR: W %C\n",board[d->y][d->x+1]);
 		if(board[d->y][d->x-1] == 'x')return 0;
 		else if(board[d->y][d->x-1] == ' ')return 0;
 		else return 1;
@@ -101,12 +101,12 @@ void droneMoveDir(DRONE *d,char dir) {
 			boardInsert(d->x,d->y,d->c);
 			sleep(1);
 		}	
-		else if (droneCheckDir(d,'E') == 0) {
-			droneMoveDir(d,'E');
+		else if (droneCheckDir(d,'W') == 0) {
+			droneMoveDir(d,'W');
 			droneMoveDir(d,'N');
 			
 		}
-		else if (droneCheckDir(d,'W') == 0) {
+		else if (droneCheckDir(d,'E') == 0) {
 			droneMoveDir(d,'W');
 			droneMoveDir(d,'N');
 		}	
@@ -189,12 +189,12 @@ void droneCruiseTo(DRONE *d,int x, int y) {
 		if(x > d->x){
 			droneMoveDir(d,'E');
 		}
-		else if(x < d->x){
-			droneMoveDir(d,'W');
-		}	
 		else if(y < d->y){
 			droneMoveDir(d,'N');
 		}
+		else if(x < d->x){
+			droneMoveDir(d,'W');
+		}	
 		else if(y > d->y){
 			droneMoveDir(d,'S');
 		}
@@ -211,19 +211,16 @@ void returnHome(DRONE *d) {
 
 int main() {
 	boardInit();
-	boardInsert(6,4,'T');
-	boardInsert(6,3,'T');
-	boardInsert(6,5,'T');
-	boardInsert(6,6,'T');	
-	boardInsert(5,6,'T');
-	boardInsert(3,0,'T');		
-	boardInsert(3,1,'T');	
-	boardInsert(4,2,'T');	
-	boardInsert(3,7,'T');	
+	boardInsert(4,3,'T');	
+	boardInsert(5,3,'T');	
+	boardInsert(6,3,'T');	
+	boardInsert(6,4,'T');	
+	boardInsert(4,4,'T');	
+	boardInsert(6,5,'T');	
 	boardPrint();
 	DRONE d;
 	droneInit(&d);
-	droneCruiseTo(&d,5,7);
+	droneCruiseTo(&d, 5,4);
 	return 0;
 }
 
