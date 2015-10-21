@@ -1,2 +1,2 @@
 droneCommander: droneCommander.c
-	gcc -o dc.o droneCommander.c
+	gcc -pthread -o dc.o droneCommander.c
